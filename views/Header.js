@@ -3,6 +3,7 @@ import {
   Box,
   Container,
   Drawer,
+  Icon,
   IconButton,
   Toolbar,
   useScrollTrigger,
@@ -25,7 +26,8 @@ const itemList = [
     menuName: "Products",
     isExternalURL: false,
     isNestMenuCollapsed: false,
-    endIcon: <ExpandMoreIcon />,
+    endIcon: "expand_more",
+    ratioWidthExist: true,
     url: [
       {
         menuName: "In-House",
@@ -135,10 +137,10 @@ const itemList = [
     ],
   },
   {
-    menuName: "Build",
+    menuName: "$MNTL",
     isExternalURL: false,
     isNestMenuCollapsed: false,
-    endIcon: <ExpandMoreIcon />,
+    endIcon: "expand_more",
     url: [
       {
         menuName: "Token",
@@ -185,10 +187,10 @@ const itemList = [
     ],
   },
   {
-    menuName: "$MNTL",
+    menuName: "Resources",
     isExternalURL: false,
     isNestMenuCollapsed: true,
-    endIcon: <ExpandMoreIcon />,
+    endIcon: "expand_more",
     url: [
       {
         menuName: "Docs",
@@ -347,7 +349,8 @@ export default function Header(props) {
                       key={index}
                       title={data.menuName}
                       urls={data.url}
-                      titleEndIcon={data.endIcon}
+                      titleEndIcon={<Icon>{data.endIcon}</Icon>}
+                      ratioWidthExist={data.ratioWidthExist}
                     />
                   ))}
               </Box>
@@ -379,7 +382,8 @@ export default function Header(props) {
                     key={index}
                     title={data.menuName}
                     urls={data.url}
-                    titleEndIcon={data.endIcon}
+                    titleEndIcon={<Icon>{data.endIcon}</Icon>}
+                    ratioWidthExist={data.ratioWidthExist}
                   />
                 ))}
             </Drawer>
