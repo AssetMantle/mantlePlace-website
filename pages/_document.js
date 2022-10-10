@@ -48,6 +48,14 @@ export default class MyDocument extends Document {
             content="AssetMantle is a community-first platform for NFT creators and collectors. Use AssetMantle to create your own NFT store or to expand your collection of NFTs."
           />
           {/* open graphs end */}
+
+          {/* bootstrap */}
+          <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous"
+          />
         </Head>
         <body
           style={{
@@ -55,7 +63,7 @@ export default class MyDocument extends Document {
             backgroundRepeat: "repeat-y",
             // backgroundPosition: "center top",
             backgroundSize: "100%",
-            backgroundColor: theme.palette.background.default,
+            backgroundColor: "#111111",
           }}
         >
           <Main />

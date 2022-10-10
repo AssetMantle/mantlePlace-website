@@ -6,6 +6,9 @@ import * as React from "react";
 import Layout from "../components/layout";
 import theme from "../config/theme";
 
+// custom stylings
+import "../config/styles.scss";
+
 // Client-side cache, shared for the whole session of the user in the browser.
 
 export default function MyApp(props) {
