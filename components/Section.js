@@ -1,5 +1,3 @@
-import { Box, Stack } from "@mui/material";
-import { Container } from "@mui/system";
 import React from "react";
 import TitleAndSubtitle from "./TitleAndSubtitle";
 
@@ -12,32 +10,29 @@ const Section = (props) => {
     children,
   } = props;
 
-  const sectionStyle = {
-    my: 16,
-    py: 4,
-    textAlign: { xs: "center", md: "left" },
-    backgroundColor,
-  };
-
   return (
-    <Box component="section" sx={sectionStyle}>
-      <Container
-        maxWidth="lg"
-        sx={{
-          // textAlign: "center",
+    <section
+      className="my-16 py-4 text-sm-center text-md-start"
+      style={{
+        backgroundColor,
+      }}
+    >
+      <div
+        className="container-lg"
+        style={{
           background,
         }}
       >
         {title || subTitle ? (
-          <Stack spacing={8} direction="column" alignItems="center">
+          <div className="d-flex flex-column align-items-center gap-8">
             <TitleAndSubtitle title={title} subTitle={subTitle} />
             {children}
-          </Stack>
+          </div>
         ) : (
           children
         )}
-      </Container>
-    </Box>
+      </div>
+    </section>
   );
 };
 
