@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Roboto:wght@400;500;600;700;800;900&display=swap");
+// variables
+$yellow-100: #ffc640;
+$yellow-200: #f2af13;
+$yellow-800: #624d19;
+$yellow-900: #f3af121a;
+
+$white-100: #fffdfa;
+$white-200: #fffdfabf;
+$white-300: #b0b0b0;
+$white-400: #fffdfa80;
+
+$gray-100: #5f5d5a;
+$gray-200: #424242;
+$gray-300: #2e2e2e;
+$gray-400: #282826;
+$gray-500: #2f2f2b;
+$gray-600: #2c2c2c;
+$gray-700: #21211e;
+$gray-800: #21211ed9;
+
+$dark-100: #050505d9;
+$dark-200: #111111;
+
+$success: #148919;
+$error: #e44651;
+
+$nav-bg: $dark-100;
+$primary-light: $white-100;
+$primary-main: $yellow-100;
+$primary-dark: $yellow-200;
+$primary-disabled: $yellow-800;
+
+$secondary-light: $white-200;
+$secondary-main: $white-300;
+$secondary-dark: $white-400;
+$secondary-disable: $gray-100;
+
+$background-default: $dark-200;
+$background-radial: radial-gradient(
+  50% 50% at 50% 50%,
+  $yellow-100 47.4%,
+  $yellow-200 100%
+);
+$background-selected-tag: $yellow-900;
+
+* {
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    border-radius: 4px;
+    color: $primary-dark;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 5px solid $primary-dark;
+    border-radius: 4px;
+    background: transparent;
+  }
+}
+
+body {
+  font-size: 16px;
+}
+
+.my-16 {
+  margin-top: 128px;
+  margin-bottom: 128px;
+}
+// text sizes
+@mixin fontRoot($family, $weight, $size) {
+  font-family: $family;
+  font-weight: $weight;
+  font-size: $size;
+  font-style: normal;
+  line-height: 120%;
+  font-feature-settings: "kern" off;
+  color: $primary-light;
+}
+
+.h1 {
+  @include fontRoot("Roboto", 700, 4rem);
+}
+.h2 {
+  @include fontRoot("Roboto", 700, 3.5rem);
+  line-height: 1;
+}
+.h3 {
+  @include fontRoot("Roboto", 700, 2rem);
+}
+.h4 {
+  @include fontRoot("Roboto", 700, 1.8rem);
+}
+.subtitle1 {
+  @include fontRoot("Roboto", 200, 2rem);
+  line-height: 120%;
+}
+.subtitle2 {
+  @include fontRoot("Roboto", 200, 1.7rem);
+  line-height: 120%;
+}
+.body1 {
+  @include fontRoot("Roboto", 300, 1.4rem);
+  line-height: 150%;
+}
+.body2 {
+  @include fontRoot("Roboto", 300, 1.2rem);
+  line-height: 150%;
+}
+.caption {
+  @include fontRoot("Roboto", 300, 1rem);
+  line-height: 100%;
+}
+
+.gradient-text {
+  font-feature-settings: "liga" off;
+  background: linear-gradient(90deg, #ff930f 0%, #5427d6 93.75%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+a:hover {
+  color: $primary-light;
+  text-decoration: none;
+}
+// buttons
+@mixin buttonRoot($bg, $disBG, $color, $discolor) {
+  @include fontRoot("Lato", 600, 16px);
+  font-feature-settings: "liga" off;
+  text-align: center;
+  text-transform: capitalize;
+  border: 1px solid;
+  border-radius: 32px;
+  background-color: $bg;
+  border-color: $primary-main;
+  color: $color;
+  &:disabled {
+    color: $discolor;
+    background-color: $disBG;
+    border-color: $primary-disabled;
+  }
+  &:hover {
+    color: $color !important;
+    background-color: $bg !important;
+    border: 1px solid $primary-main !important;
+    box-shadow: 0px 0px 10px $yellow-800 !important;
+  }
+}
+@mixin LinkRoot {
+  @include fontRoot("Roboto", 700, 14px);
+  text-align: center;
+  text-transform: capitalize;
+  font-feature-settings: "liga" off;
+  color: $primary-main;
+  &:disabled {
+    color: $primary-disabled;
+  }
+  &:hover {
+    color: $primary-main !important;
+  }
+}
+
+.button-primary {
+  @include buttonRoot($primary-main, $primary-disabled, $gray-600, $gray-600);
+  max-width: max-content;
+}
+.button-secondary {
+  @include buttonRoot(
+    "transparent",
+    "transparent",
+    $primary-main,
+    $primary-disabled
+  );
+}
+
+.am-link {
+  @include LinkRoot();
+}
+
+// customs as needed
+// globally
+.bg-t {
+  background-color: transparent;
+}
+.bg-gray-800 {
+  background-color: $gray-800;
+}
+.bg-yellow-100 {
+  background-color: $yellow-100;
+}
+.bg-yellow-100-hover {
+  &:hover {
+    background-color: $yellow-100;
+    color: $dark-200 !important;
+  }
+}
+.bg-translucent {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
+}
+.text-white {
+  color: $primary-light !important;
+}
+.text-gray {
+  color: $gray-100;
+}
+.text-primary {
+  color: $primary-main !important;
+}
+.overflow-y {
+  overflow: hidden;
+  overflow-x: auto;
+}
+.ratio-16x9 {
+  aspect-ratio: 16/9;
+}
+.after-none {
+  &::after {
+    display: none;
+  }
+}
