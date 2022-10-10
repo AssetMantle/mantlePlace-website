@@ -17,14 +17,14 @@ export default function Index(props) {
         heroSectionConfigData={props.heroSectionConfigData}
         sectionStyle={props.heroSectionStyle}
       />
-      <GallerySection
-        gallerySectionConfigData={props.gallerySectionConfigData}
-        optionStyles={props.gallerySectionOptionStyle}
-      />
       <FeatureSection
         featureSectionConfigData={props.featureSectionConfigData}
         optionStyles={props.featureSectionOptionStyles}
         optionContainerStyles={props.featureSectionOptionContainerStyles}
+      />
+      <GallerySection
+        gallerySectionConfigData={props.gallerySectionConfigData}
+        optionStyles={props.gallerySectionOptionStyle}
       />
       <InfoSection
         listStyle={props.infoSectionListStyle}
