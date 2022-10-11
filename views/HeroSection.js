@@ -1,74 +1,43 @@
-import ArticleIcon from "@mui/icons-material/Article";
-import {
-  Box,
-  Button,
-  Divider,
-  Grid,
-  Icon,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { Container } from "@mui/system";
 import React from "react";
 import SocialIcons from "../components/SocialIcons";
-// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-
-// import Icon from '@mui/material/Icon';
 
 export default function HeroSection({ heroSectionConfigData, sectionStyle }) {
   // contents of right sub-section
   const LeftSubSectionJSX = (
-    <Stack
-      direction="column"
-      // justifyContent="center"
-      alignItems={{ xs: "center", md: "flex-start" }}
-      spacing={2}
-    >
-      {/* Title */}
-      <Typography
-        variant={sectionStyle.titleVariant}
-        color={sectionStyle.titleColor}
-        // align={}
-        sx={{ maxWidth: 375, textAlign: { xs: "center", md: "left" } }}
+    <div className="d-flex flex-column align-items-center align-items-md-start gap-2">
+      <h1
+        className="text-center text-md-start h1"
+        style={{ maxWidth: "399px" }}
       >
         {heroSectionConfigData.title}
-      </Typography>
-      {/* Subtitle */}
-      <Typography
-        variant={sectionStyle.subTitleVariant}
-        color={sectionStyle.subTitleColor}
-        align="left"
-        sx={{ maxWidth: 375, textAlign: { xs: "center", md: "left" } }}
+      </h1>
+
+      <h6
+        className="text-center text-md-start subtitle1 text-primary "
+        style={{ maxWidth: "399px" }}
       >
         {heroSectionConfigData.subtitle}
-      </Typography>
-      {/* CTA */}
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        justifyContent={{ xs: "center", md: "flex-start" }}
-        gap={2}
-        pt={2}
-        pb={4}
-        sx={{ backgroundColor: "transparent" }}
-      >
-        {heroSectionConfigData.buttons.map((ele, index) => (
-          <Button
-            key={index}
-            variant={ele.variant}
-            size="large"
-            endIcon={<Icon>{ele.endIcon}</Icon>}
-            href={ele.href}
-            target="_blank"
-          >
-            {ele.label}
-          </Button>
-        ))}
-      </Box>
+      </h6>
+
+      <div className="d-flex flex-wrap justify-content-center justify-content-md-start gap-2 pt-2 pb-4">
+        {React.Children.toArray(
+          heroSectionConfigData.buttons.map((button) => (
+            <a
+              className={`btn d-flex align-items-center gap-2 ${button.variant}`}
+              href={button.href}
+              target="_blank"
+            >
+              {button.label} <i className={`bi ${button.endIcon}`}></i>
+            </a>
+          ))
+        )}
+      </div>
+      <hr
+        className="bg-theme-white"
+        style={{ height: "3px", width: "90%", opacity: "1" }}
+      />
       <SocialIcons />
-    </Stack>
+    </div>
   );
 
   // contents of left sub-section
@@ -85,86 +54,24 @@ export default function HeroSection({ heroSectionConfigData, sectionStyle }) {
   );
 
   return (
-    <Box
-      component="section"
-      sx={sectionStyle}
+    <section
+      className={sectionStyle}
       id={
         heroSectionConfigData.title &&
         heroSectionConfigData.title.toLowerCase().replaceAll(" ", "-")
       }
     >
-      <Container maxWidth="lg" sx={{ position: "relative" }}>
-        {/* Left & Right Sub-section */}
-        <Grid container alignItems="center">
+      <div className="container-lg">
+        <div className="row align-items-center">
           {/* Left Sub-section */}
-          <Grid
-            item
-            xs={12}
-            md={5}
-            py={10}
-            sx={{ backgroundColor: "transparent" }}
-          >
+          <div className="col-12 col-md-6 py-10" py={10}>
             {LeftSubSectionJSX}
-          </Grid>
+          </div>
 
           {/* Right Sub-section */}
-          <Grid item xs={12} md={7} sx={{ backgroundColor: "transparent" }}>
-            {RightSubSectionJSX}
-          </Grid>
-        </Grid>
-
-        <Paper
-          variant="translucent"
-          sx={{
-            width: { xs: "100%", md: "min(1200px, 90vw)" },
-            position: { xs: "relative", md: "absolute" },
-            bottom: { xs: "0", md: "-24px" },
-          }}
-        >
-          <Grid
-            container
-            alignItems="center"
-            spacing={2}
-            sx={{
-              px: 6,
-              py: 4,
-              display: "flex",
-            }}
-          >
-            {heroSectionConfigData.translucentStripData.map((ele, index) => (
-              <Grid
-                key={index}
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                backgroundColor="transparent"
-                justifyContent="center"
-              >
-                <Stack
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="center"
-                  spacing={2}
-                >
-                  <Typography variant="h3" color="primary.main">
-                    {ele.amount}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    textAlign="left"
-                    // sx={{ fontWeight: "400", textTransform: "capitalize" }}
-                  >
-                    {ele.top}
-                    <br />
-                    {ele.bottom}
-                  </Typography>
-                </Stack>
-              </Grid>
-            ))}
-          </Grid>
-        </Paper>
-      </Container>
-    </Box>
+          <div className="col-12 col-md-6">{RightSubSectionJSX}</div>
+        </div>
+      </div>
+    </section>
   );
 }
