@@ -224,3 +224,9 @@ a:hover {
     display: none;
   }
 }
+
+.hover-dark-100 {
+  &:hover {
+    background-color: $dark-100 !important;
+  }
+}
