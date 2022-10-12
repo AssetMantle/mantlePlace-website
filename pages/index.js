@@ -169,7 +169,7 @@ export async function getStaticProps() {
     title: "Mantleplace Features",
     titleComponent: "",
     titleVariant: "h1",
-    titleColor: "text-white",
+    titleColor: "text-primary",
     description:
       "MantlePlace inherits latest principles of Blockchain Identity and Customization to create truly unique ownership and optimized transfer of value ",
     descriptionStyle: { maxWidth: "min(836px, 100%)", margin: "0 auto" }, // object of styles or false
@@ -187,7 +187,7 @@ export async function getStaticProps() {
       },
       {
         href: "",
-        icon: "/FeatureSection/multiChain.svg", // put icon component or url >>don't forgot to change the below
+        icon: "/FeatureSection/didBased.svg", // put icon component or url >>don't forgot to change the below
         title: "DID based ownership",
         titleVariant: "h4",
         titleColor: "text-primary",
@@ -220,7 +220,7 @@ export async function getStaticProps() {
       },
       {
         href: "",
-        icon: "/FeatureSection/completelySecure.svg", // put icon component or url >>don't forgot to change the below
+        icon: "/FeatureSection/multiChain.svg", // put icon component or url >>don't forgot to change the below
         title: "Multichain Transfers",
         titleVariant: "h4",
         titleColor: "text-primary",
@@ -231,7 +231,7 @@ export async function getStaticProps() {
       },
       {
         href: "",
-        icon: "/FeatureSection/futureInteroperability.svg", // put icon component or url >>don't forgot to change the below
+        icon: "/FeatureSection/fractionalized.svg", // put icon component or url >>don't forgot to change the below
         title: "Fractionalized Ownership",
         titleVariant: "h4",
         titleColor: "text-primary",
@@ -251,11 +251,8 @@ export async function getStaticProps() {
     maxWidth: "374px",
     boxShadow: "none",
     padding: "16px 22px",
-    minHeight: "296px",
+    minHeight: "331px",
     transition: "all 0.3s ease-in-out",
-    "&:hover": {
-      backgroundColor: "navBg",
-    },
   };
   const infoSectionConfigData = {
     textAlign: "", // >>> default: left
@@ -448,7 +445,7 @@ export async function getStaticProps() {
     textAlign: "center", // >>> default: left
     title: "The AssetMantle Advantage",
     titleOnLeft: false, // >>> default: false
-    titleColor: "primary.main",
+    titleColor: "text-primary",
     titleVariant: "h4",
     description:
       "Find out the unique qualities inherent in the AssetMantle ecosystem which makes our suite of products and services stand out",
