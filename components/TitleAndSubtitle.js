@@ -20,8 +20,27 @@ const TitleAndSubtitle = (props) => {
 
   return (
     <div
-      className="d-flex flex-column align-items-center"
-      style={{ textAlign }}
+      className={`d-flex flex-column align-items-center ${
+        textAlign &&
+        textAlign !== "center" &&
+        textAlign !== "left" &&
+        textAlign !== "right" &&
+        textAlign !== "start" &&
+        textAlign !== "justify"
+          ? textAlign
+          : ""
+      }`}
+      style={{
+        textAlign:
+          textAlign &&
+          (textAlign === "center" ||
+            textAlign === "left" ||
+            textAlign === "right" ||
+            textAlign === "start" ||
+            textAlign === "justify")
+            ? textAlign
+            : "",
+      }}
       id={
         title &&
         title
