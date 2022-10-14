@@ -33,8 +33,8 @@ export default function HeroSection({ heroSectionConfigData, sectionStyle }) {
         )}
       </div>
       <hr
-        className="bg-theme-white"
-        style={{ height: "3px", width: "90%", opacity: "1" }}
+        className="bg-theme-white rounded-4"
+        style={{ height: "2px", width: "90%", opacity: "1" }}
       />
       <SocialIcons />
     </div>
