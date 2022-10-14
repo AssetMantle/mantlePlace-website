@@ -1,52 +1,54 @@
-import { IconButton, Stack } from "@mui/material";
+import { a, Stack } from "@mui/material";
 import React from "react";
 import { FiGithub, FiTwitter } from "react-icons/fi";
 import { TbBrandTelegram, TbBrandDiscord } from "react-icons/tb";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-const SocialIcons = ({ spacing = 2 }) => (
-  <Stack
-    direction="row"
-    justifyContent="center"
-    alignItems="left"
-    spacing={spacing}
+const SocialIcons = ({ spacing = 4 }) => (
+  <div
+    className={`d-flex justify-content-center align-items-start gap-${spacing} text-white body1`}
   >
-    <IconButton
+    <a
+      className="text-white"
       href="https://twitter.com/AssetMantle"
       target="_blank"
       color="inherit"
     >
       <FiTwitter />
-    </IconButton>
-    <IconButton
+    </a>
+    <a
+      className="text-white"
       href="https://discord.gg/BSdBQ4495d"
       target="_blank"
       color="inherit"
     >
       <TbBrandDiscord />
-    </IconButton>
-    <IconButton
+    </a>
+    <a
+      className="text-white"
       href="https://github.com/AssetMantle"
       target="_blank"
       color="inherit"
     >
       <FiGithub />
-    </IconButton>
-    <IconButton
+    </a>
+    <a
+      className="text-white"
       href="https://t.me/assetmantlechat"
       target="_blank"
       color="inherit"
     >
       <TbBrandTelegram />
-    </IconButton>
-    <IconButton
+    </a>
+    <a
+      className="text-white"
       href="https://www.instagram.com/assetmantle/"
       target="_blank"
       color="inherit"
     >
       <InstagramIcon />
-    </IconButton>
-  </Stack>
+    </a>
+  </div>
 );
 
 export default SocialIcons;

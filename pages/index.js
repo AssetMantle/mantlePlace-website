@@ -17,14 +17,17 @@ export default function Index(props) {
         heroSectionConfigData={props.heroSectionConfigData}
         sectionStyle={props.heroSectionStyle}
       />
-      <GallerySection
-        gallerySectionConfigData={props.gallerySectionConfigData}
-        optionStyles={props.gallerySectionOptionStyle}
-      />
       <FeatureSection
         featureSectionConfigData={props.featureSectionConfigData}
         optionStyles={props.featureSectionOptionStyles}
         optionContainerStyles={props.featureSectionOptionContainerStyles}
+        optionContainerStyleClasses={
+          props.featureSectionOptionContainerStyleClasses
+        }
+      />
+      <GallerySection
+        gallerySectionConfigData={props.gallerySectionConfigData}
+        optionStyles={props.gallerySectionOptionStyle}
       />
       <InfoSection
         listStyle={props.infoSectionListStyle}
@@ -55,42 +58,26 @@ export default function Index(props) {
 }
 export async function getStaticProps() {
   const heroSectionConfigData = {
-    title: "Redefining Digital Asset Ownership",
+    title: `For The Art of Yesterday.`,
     subtitle:
-      "Experience the first NFT marketplace with blockchain-based identity",
+      "Experience the first NFT Marketplace with Decentralized Identifiers",
     buttons: [
       {
-        label: "Learn More",
-        endIcon: "keyboard_arrow_right",
-        variant: "outlined",
-        href: "/about",
+        label: "Launch App",
+        endIcon: "bi-arrow-up-right",
+        variant: "button-primary",
+        href: "https://marketplace.assetmantle.one/",
       },
       {
-        label: "Documentation",
-        endIcon: "article",
-        variant: "contained",
-        href: "https://docs.assetmantle.one/",
+        label: "What’re DIDs?",
+        endIcon: "bi-chevron-right",
+        variant: "button-secondary",
+        href: "https://www.w3.org/TR/did-core/",
       },
     ],
-    image: "/HeroSection/mantler.webp",
-    translucentStripData: [
-      { amount: "35k+", top: "COMMUNITY", bottom: "MEMBERS" },
-      { amount: "93k+", top: "UNIQUE WALLETS", bottom: "& USERS" },
-      { amount: "3M+", top: "TRANSACTIONS", bottom: "ON-CHAIN" },
-    ],
+    image: "/images/hero/mantler.webp",
   };
-  const heroSectionStyle = {
-    pt: 4,
-    mt: 2,
-    pb: 4,
-    mb: 4,
-    color: "primary.light",
-    textAlign: { xs: "center", sm: "center", md: "center" },
-    titleVariant: "h1",
-    titleColor: "secondary.main",
-    subTitleVariant: "subtitle1",
-    subTitleColor: "primary.main",
-  };
+  const heroSectionStyle = `py-4 mt-2 text-white text-center`;
   const gallerySectionConfigData = {
     paperVariant: "translucent",
     titleVariant: "h3",
@@ -179,101 +166,93 @@ export async function getStaticProps() {
   const featureSectionConfigData = {
     paperVariant: "translucent",
     textAlign: "center",
-    title: "Why choose us?",
+    title: "Mantleplace Features",
     titleComponent: "",
     titleVariant: "h1",
-    titleColor: "secondary.main",
+    titleColor: "text-primary",
     description:
-      "AssetMantle’s foundation is built using the best-in-class core blockchain principles, and optimized for the next evolution of NFT economy",
+      "MantlePlace inherits latest principles of Blockchain Identity and Customization to create truly unique ownership and optimized transfer of value ",
     descriptionStyle: { maxWidth: "min(836px, 100%)", margin: "0 auto" }, // object of styles or false
     featuresArray: [
       {
         href: "",
-        icon: "/FeatureSection/optimizedForNft.svg", // put icon component or url >>don't forgot to change the below
-        title: "Optimized for NFTs",
+        icon: "/FeatureSection/futureInteroperability.svg", // put icon component or url >>don't forgot to change the below
+        title: "DEX for NFTs",
         titleVariant: "h4",
-        titleColor: "primary.main",
+        titleColor: "text-primary",
         description:
-          "Our AssetMantle chain is specifically calibrated with features like Verified NFT Creators, customized NFT properties, in-built whitelisting features etc.",
+          "MantlePlace is a full fledged Decentralized exchange for NFTs enabling various modes of transfer of value, including buy, sell, bid, ask, and potentially several trade types.",
         descriptionVariant: "body2",
-        descriptionColor: "secondary.main",
+        descriptionColor: "text-white",
+      },
+      {
+        href: "",
+        icon: "/FeatureSection/didBased.svg", // put icon component or url >>don't forgot to change the below
+        title: "DID based ownership",
+        titleVariant: "h4",
+        titleColor: "text-primary",
+        description:
+          "The ownership in NFT economy of MantlePlace is implemented using the latest concept in Blockchain Identity called Decentralized Identifiers (DIDs).",
+        descriptionVariant: "body2",
+        descriptionColor: "text-white",
+      },
+      {
+        href: "",
+        icon: "/FeatureSection/optimizedForNft.svg", // put icon component or url >>don't forgot to change the below
+        title: "Schema based NFT",
+        titleVariant: "h4",
+        titleColor: "text-primary",
+        description:
+          "MantlePlace allows creators to build bespoke NFT schemas, enabling customization of NFT metadata at the most granular level, to create truly unique assets.",
+        descriptionVariant: "body2",
+        descriptionColor: "text-white",
       },
       {
         href: "",
         icon: "/FeatureSection/pioneeringCosmosEco.svg", // put icon component or url >>don't forgot to change the below
-        title: "Cosmos Ecosystem",
+        title: "Cosmos Advantage",
         titleVariant: "h4",
-        titleColor: "primary.main",
+        titleColor: "text-primary",
         description:
-          "AssetMantle being one of the top zones of the Cosmos Hub, leverages features like Tendermint Core for Consensus and a highly modular SDK framework.",
+          "MantlePlace is based on AssetMantle chain, a Cosmos zone, enabling fast, cheap transactions, Tendermint consensus algorithm, IBC based transfers, Modular SDK etc.",
         descriptionVariant: "body2",
-        descriptionColor: "secondary.main",
+        descriptionColor: "text-white",
       },
       {
         href: "",
-        icon: "/FeatureSection/extremelyLowFees.svg", // put icon component or url >>don't forgot to change the below
-        title: "Extremely Low Fees",
+        icon: "/FeatureSection/multiChain.svg", // put icon component or url >>don't forgot to change the below
+        title: "Multichain Transfers",
         titleVariant: "h4",
-        titleColor: "primary.main",
+        titleColor: "text-primary",
         description:
-          "AssetMantle has a highly Economical network providing one of the lowest fees compared to any popular network, of around $0.01 per transaction.",
+          "MantlePlace will leverage an IBC enabled interchain universe to potentially create a multichain NFT market. It is at the forefront of adopting InterNFT Standards.",
         descriptionVariant: "body2",
-        descriptionColor: "secondary.main",
+        descriptionColor: "text-white",
       },
       {
         href: "",
-        icon: "/FeatureSection/fastOrderFulfillment.svg", // put icon component or url >>don't forgot to change the below
-        title: "Fast Order Fulfillments",
+        icon: "/FeatureSection/fractionalized.svg", // put icon component or url >>don't forgot to change the below
+        title: "Fractionalized Ownership",
         titleVariant: "h4",
-        titleColor: "primary.main",
+        titleColor: "text-primary",
         description:
-          "Extremely fast transactions nearing 7 seconds enables almost zero waiting time for fulfillment of orders of buy, sell, auction etc.",
-        descriptionVariant: "body2",
-        descriptionColor: "secondary.main",
-      },
-      {
-        href: "",
-        icon: "/FeatureSection/completelySecure.svg", // put icon component or url >>don't forgot to change the below
-        title: "Completely Secure",
-        titleVariant: "h4",
-        titleColor: "primary.main",
-        description:
-          "With high network security and leveraging the native token $MNTL, AssetMantle provides the level of protection required for your assets.",
-        descriptionVariant: "body2",
-        descriptionColor: "secondary.main",
-      },
-      {
-        href: "",
-        icon: "/FeatureSection/futureInteroperability.svg", // put icon component or url >>don't forgot to change the below
-        title: "Future Interoperability",
-        titleVariant: "h4",
-        titleColor: "primary.main",
-        description:
-          "InterNFT can potentially enable NFTs to be transferred to other connected chains, thereby creating a larger shared market economy.",
+          "MantlePlace will implement fractional ownership of assets at chain level, where several parties could have collective ownership of a unit NFT. ",
         descriptionVariant: "body2",
         descriptionColor: "secondary.main",
       },
     ],
   };
+  const featureSectionOptionContainerStyleClasses = `d-flex align-items-center justify-content-center flex-wrap mt-5`;
   const featureSectionOptionContainerStyles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexWrap: "wrap",
     gap: "14px",
-    mt: 5,
   };
   const featureSectionOptionStyles = {
     background: "transparent",
-    maxWidth: 374,
+    maxWidth: "374px",
     boxShadow: "none",
     padding: "16px 22px",
-    minHeight: "296px",
+    minHeight: "331px",
     transition: "all 0.3s ease-in-out",
-    color: "primary.light",
-    "&:hover": {
-      backgroundColor: "navBg",
-    },
   };
   const infoSectionConfigData = {
     textAlign: "", // >>> default: left
@@ -466,7 +445,7 @@ export async function getStaticProps() {
     textAlign: "center", // >>> default: left
     title: "The AssetMantle Advantage",
     titleOnLeft: false, // >>> default: false
-    titleColor: "primary.main",
+    titleColor: "text-primary",
     titleVariant: "h4",
     description:
       "Find out the unique qualities inherent in the AssetMantle ecosystem which makes our suite of products and services stand out",
@@ -1093,6 +1072,7 @@ export async function getStaticProps() {
       gallerySectionOptionStyle,
       featureSectionConfigData,
       featureSectionOptionContainerStyles,
+      featureSectionOptionContainerStyleClasses,
       featureSectionOptionStyles,
       infoSectionConfigData,
       infoSectionListStyle,

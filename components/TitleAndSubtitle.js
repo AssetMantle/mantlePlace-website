@@ -1,4 +1,3 @@
-import { Stack, Typography } from "@mui/material";
 import React from "react";
 import NextLink from "./NextLink";
 
@@ -20,11 +19,28 @@ const TitleAndSubtitle = (props) => {
   };
 
   return (
-    <Stack
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      textAlign={textAlign}
+    <div
+      className={`d-flex flex-column align-items-center ${
+        textAlign &&
+        textAlign !== "center" &&
+        textAlign !== "left" &&
+        textAlign !== "right" &&
+        textAlign !== "start" &&
+        textAlign !== "justify"
+          ? textAlign
+          : ""
+      }`}
+      style={{
+        textAlign:
+          textAlign &&
+          (textAlign === "center" ||
+            textAlign === "left" ||
+            textAlign === "right" ||
+            textAlign === "start" ||
+            textAlign === "justify")
+            ? textAlign
+            : "",
+      }}
       id={
         title &&
         title
@@ -34,9 +50,9 @@ const TitleAndSubtitle = (props) => {
       }
     >
       {SectionConfigData.title && (
-        <Typography
-          variant={SectionConfigData.titleVariant || "h1"}
-          color={SectionConfigData.titleColor || "inherit"}
+        <h1
+          className="h1"
+          style={{ color: SectionConfigData.titleColor || "inherit" }}
         >
           <NextLink
             color="inherit"
@@ -51,19 +67,21 @@ const TitleAndSubtitle = (props) => {
           >
             {SectionConfigData.title}
           </NextLink>
-        </Typography>
+        </h1>
       )}
 
       {SectionConfigData.subTitle && (
-        <Typography
-          variant={SectionConfigData.subTitleVariant || "subtitle1"}
-          color={SectionConfigData.subTitleColor || "inherit"}
-          sx={SectionConfigData.subTitleStyle}
+        <p
+          className="subtitle1"
+          style={{
+            color: SectionConfigData.titleColor || "inherit",
+            ...SectionConfigData.subTitleStyle,
+          }}
         >
           {SectionConfigData.subTitle}
-        </Typography>
+        </p>
       )}
-    </Stack>
+    </div>
   );
 };
 
