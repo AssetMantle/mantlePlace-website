@@ -2,7 +2,7 @@ import DownloadingIcon from "@mui/icons-material/Downloading";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Box, Button, Grid, Icon, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import Section from "../components/Section";
+import Section from "../../components/Section";
 
 export default function ChainSection({ chainSectionConfigData }) {
   const [showDescription, setShowDescription] = useState();
