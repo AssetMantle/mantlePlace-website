@@ -15,7 +15,8 @@
     "react-dom": "latest",
     "react-icons": "^4.4.0",
     "sass": "^1.55.0",
-    "serve": "11.2.0"
+    "serve": "11.2.0",
+    "swiper": "^8.1.4"
   },
   "devDependencies": {
     "eslint": "latest",

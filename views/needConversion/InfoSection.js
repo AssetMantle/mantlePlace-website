@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import Section from "../components/Section";
-import TitleAndSubtitle from "../components/TitleAndSubtitle";
+import Section from "../../components/Section";
+import TitleAndSubtitle from "../../components/TitleAndSubtitle";
 
 function srcset(image, size, rows = 1, cols = 1) {
   return {

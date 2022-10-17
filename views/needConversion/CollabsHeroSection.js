@@ -1,8 +1,8 @@
 import { Container, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import Section from "../components/Section";
-import TitleAndSubtitle from "../components/TitleAndSubtitle";
+import Section from "../../components/Section";
+import TitleAndSubtitle from "../../components/TitleAndSubtitle";
 
 export default function CollabsHeroSection({ configData }) {
   return (
