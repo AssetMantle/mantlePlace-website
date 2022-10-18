@@ -52,7 +52,7 @@ export default function FeaturedCreators({ featuredCreatorData }) {
                       </div>
                       <div className="d-flex flex-column gap-2 justify-content-center slide__active__contents__container_details">
                         <h4 className="m-0 body1 gap-2 d-flex align-items-end text-primary">
-                          {data.name} <i class="bi bi-patch-check"></i>
+                          {data.name} <i className="bi bi-patch-check"></i>
                         </h4>
                         <p className="m-0 text-white caption">{data.profile}</p>
                       </div>

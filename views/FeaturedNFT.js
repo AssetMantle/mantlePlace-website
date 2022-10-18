@@ -44,7 +44,7 @@ export default function FeaturedNFT({ featuredNFTConfig }) {
                     className="am-link no-underline"
                   >
                     {image.author && image.author}{" "}
-                    <i class="bi bi-patch-check"></i>
+                    <i className="bi bi-patch-check"></i>
                   </a>
                   <p className="caption mb-1">{image.name && image.name}</p>
                 </div>
