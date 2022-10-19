@@ -6,7 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 
 const SocialIcons = ({ spacing = 4, additionalClass = "" }) => (
   <div
-    className={`d-flex justify-content-center align-items-start gap-${spacing} text-white body1 ${additionalClass}`}
+    className={`d-flex align-items-start gap-${spacing} text-white body1 ${additionalClass}`}
   >
     <a
       className="text-white"
