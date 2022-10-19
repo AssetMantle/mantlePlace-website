@@ -68,7 +68,7 @@ export async function getStaticProps() {
     ],
     image: "/images/hero/mantler.webp",
   };
-  const heroSectionStyle = `py-4 mt-2 text-white text-center`;
+  const heroSectionStyle = `py-6 py-md-4 mt-2 text-white text-center`;
   const featureSectionConfigData = {
     paperVariant: "translucent",
     textAlign: "center",
