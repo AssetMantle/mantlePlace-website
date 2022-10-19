@@ -69,6 +69,10 @@ body {
   margin-top: 128px;
   margin-bottom: 128px;
 }
+.py-6 {
+  padding-top: 68px;
+  padding-top: 68px;
+}
 // text sizes
 @mixin fontRoot($family, $weight, $size) {
   font-family: $family;
@@ -245,7 +249,18 @@ a:hover {
     text-decoration: none;
   }
 }
+
 // specific styles
+.after-none {
+  &::after {
+    display: none;
+  }
+}
+
+summary::marker {
+  display: none;
+}
+
 .featuredNFT-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
