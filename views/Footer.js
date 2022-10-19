@@ -11,7 +11,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FiLinkedin, FiGithub, FiTwitter } from "react-icons/fi";
 import { TbBrandTelegram, TbBrandDiscord } from "react-icons/tb";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -177,239 +177,134 @@ const FooterConfigData = {
   },
 };
 
-const footerStyle = {
-  mt: 10,
-  py: 4,
-  color: "primary.light",
-  textAlign: { xs: "center", sm: "left" },
-};
-
-const linkStyles = {
-  color: "primary.light",
-  "&:hover": {
-    color: "primary.main",
-  },
-};
-
-function ScrollTop(props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
-
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
-      "#back-to-top-anchor"
-    );
-
-    if (anchor) {
-      anchor.scrollIntoView({
-        block: "center",
-      });
-    }
-  };
-
-  return (
-    <Fade in={trigger}>
-      <Box
-        onClick={handleClick}
-        role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
-      >
-        {children}
-      </Box>
-    </Fade>
-  );
-}
-
-ScrollTop.propTypes = {
-  children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
-
 export default function Footer(props) {
+  const backToTopRef = useRef();
+
+  useEffect(() => {
+    const scroll = (e) => {
+      backToTopRef.current.style.opacity = window.scrollY / 600;
+    };
+    window.addEventListener("scroll", scroll);
+    return () => window.removeEventListener("scroll", scroll);
+  }, []);
   return (
     <>
-      <Paper sx={{ py: 8 }} variant="translucent">
-        <Container maxWidth="lg">
-          <Stack
-            spacing={6}
-            // alignItems="stretch"
-            // justifyContent="space-between"
-          >
-            {FooterConfigData.showTopData === true && (
-              <Grid container spacing={4} backgroundColor="transparent">
-                <Grid item xs={12} sm={6} md={3}>
-                  {FooterConfigData.colOne.list &&
-                    Array.isArray(FooterConfigData.colOne.list) &&
-                    FooterConfigData.colOne.list.length > 0 && (
-                      <Stack
-                        sx={{ pt: 3 }}
-                        spacing={3}
-                        alignItems={{ xs: "center", md: "start" }}
-                      >
-                        {FooterConfigData.colOne.list.map((item, index) => (
-                          <Stack
-                            key={index}
-                            spacing={0.5}
-                            backgroundColor="transparent"
-                            alignItems={{ xs: "center", md: "start" }}
-                          >
-                            <Typography variant="caption">
-                              {item.title}
-                            </Typography>
-                            <NextLink
-                              color="primary.main"
-                              underline="hover"
-                              variant="caption"
-                              href={`mailto:${item.text}`}
-                            >
-                              {item.text}
-                            </NextLink>
-                          </Stack>
-                        ))}
-                        <SocialIcons spacing={1} size="small" />
-                      </Stack>
-                    )}
-                </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={3}
-                  sx={{
-                    textAlign: "center",
-                    // margin: { xs: 0, sm: "auto", md: 0 },
-                  }}
-                >
-                  {FooterConfigData.colTwo.list &&
-                    Array.isArray(FooterConfigData.colTwo.list) &&
-                    FooterConfigData.colTwo.list.length > 0 && (
-                      <Stack sx={{ pt: 3 }} spacing={2}>
-                        {FooterConfigData.colTwo.list.map((item, index) => (
-                          <Typography
-                            variant="caption"
-                            key={`${index}sa${item}`}
-                          >
-                            <NextLink
-                              color="primary.main"
-                              underline="hover"
-                              variant="caption"
-                              href={item.link.href}
-                            >
-                              {item.link.text}
-                            </NextLink>
-                          </Typography>
-                        ))}
-                      </Stack>
-                    )}
-                </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={3}
-                  sx={{
-                    textAlign: "center",
-                    // margin: { xs: 0, sm: "auto", md: 0 },
-                  }}
-                >
-                  {FooterConfigData.colThree.list &&
-                    Array.isArray(FooterConfigData.colThree.list) &&
-                    FooterConfigData.colThree.list.length > 0 && (
-                      <Stack sx={{ pt: 3 }} spacing={2}>
-                        {FooterConfigData.colThree.list.map((item, index) => (
-                          <Typography
-                            variant="caption"
-                            key={`${index}sa${item}`}
-                          >
-                            <NextLink
-                              color="primary.main"
-                              underline="hover"
-                              variant="caption"
-                              href={item.link.href}
-                            >
-                              {item.link.text}
-                            </NextLink>
-                          </Typography>
-                        ))}
-                      </Stack>
-                    )}
-                </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={3}
-                  sx={{
-                    textAlign: "center",
-                    // margin: { xs: 0, sm: "auto", md: 0 },
-                  }}
-                >
-                  {FooterConfigData.colFour.list &&
-                    Array.isArray(FooterConfigData.colFour.list) &&
-                    FooterConfigData.colFour.list.length > 0 && (
-                      <Stack sx={{ pt: 3 }} spacing={2}>
-                        {FooterConfigData.colFour.list.map((item, index) => (
+      <footer
+        sx={{ py: 8 }}
+        className="py-6 bg-translucent text-white rounded-4"
+      >
+        <div className="container-lg d-flex flex-column gap-2">
+          {FooterConfigData.showTopData === true && (
+            <div className="row gap-4 bg-t">
+              <div className="col-12 col-sm-6 col-md-3">
+                {FooterConfigData.colOne.list &&
+                  Array.isArray(FooterConfigData.colOne.list) &&
+                  FooterConfigData.colOne.list.length > 0 && (
+                    <div className="d-flex flex-column pt-3 gap-3 text-center text-md-start">
+                      {FooterConfigData.colOne.list.map((item, index) => (
+                        <div className="d-flex flex-column gap-1 bg-t align-items-center align-items-md-start">
+                          <p className="caption">{item.title}</p>
                           <NextLink
-                            key={index}
                             color="primary.main"
                             underline="hover"
                             variant="caption"
-                            href={item.link.href}
+                            href={`mailto:${item.text}`}
                           >
-                            {item.link.text}
+                            {item.text}
                           </NextLink>
-                        ))}
-                      </Stack>
-                    )}
-                </Grid>
-              </Grid>
-            )}
-            <Divider sx={{ borderColor: "grey.600" }} />
-            <Stack
-              spacing={2}
-              direction={{ xs: "column", sm: "row" }}
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <img src="/static/Logo.svg" style={{ maxWidth: "200px" }}></img>
-              <Typography
-                variant="caption"
-                component="p"
-                sx={{ textAlign: "center" }}
+                        </div>
+                      ))}
+                      <SocialIcons
+                        additionalClass="justify-content-center justify-content-md-start body1"
+                        spacing={3}
+                        size="small"
+                      />
+                    </div>
+                  )}
+              </div>
+              <div
+                className="col-12 col-sm-6 col-md-3"
+                style={{ textAlign: "center" }}
               >
-                © AssetMantle {new Date().getFullYear()} - All rights reserved{" "}
-              </Typography>
-            </Stack>
-          </Stack>
-        </Container>
-      </Paper>
-      <ScrollTop {...props}>
-        <Fab
-          size="small"
-          aria-label="scroll back to top"
-          sx={{
-            backgroundColor: "background.default",
-            color: "primary.main",
-            ":hover": {
-              backgroundColor: "primary.main",
-              color: "background.default",
-            },
-          }}
+                {FooterConfigData.colTwo.list &&
+                  Array.isArray(FooterConfigData.colTwo.list) &&
+                  FooterConfigData.colTwo.list.length > 0 && (
+                    <div className="d-flex flex-column pt-3 gap-3">
+                      {FooterConfigData.colTwo.list.map((item, index) => (
+                        <NextLink
+                          className="text-primary caption hover-underline"
+                          href={item.link.href}
+                          key={`${index}sa${item}`}
+                        >
+                          {item.link.text}
+                        </NextLink>
+                      ))}
+                    </div>
+                  )}
+              </div>
+              <div
+                className="col-12 col-sm-6 col-md-3"
+                style={{ textAlign: "center" }}
+              >
+                {FooterConfigData.colThree.list &&
+                  Array.isArray(FooterConfigData.colThree.list) &&
+                  FooterConfigData.colThree.list.length > 0 && (
+                    <div className="d-flex flex-column pt-3 gap-3">
+                      {FooterConfigData.colThree.list.map((item, index) => (
+                        <NextLink
+                          className="text-primary caption hover-underline"
+                          href={item.link.href}
+                          key={`${index}sa${item}`}
+                        >
+                          {item.link.text}
+                        </NextLink>
+                      ))}
+                    </div>
+                  )}
+              </div>
+              <div
+                className="col-12 col-sm-6 col-md-2"
+                style={{ textAlign: "center" }}
+              >
+                {FooterConfigData.colFour.list &&
+                  Array.isArray(FooterConfigData.colFour.list) &&
+                  FooterConfigData.colFour.list.length > 0 && (
+                    <div className="d-flex flex-column pt-3 gap-3">
+                      {FooterConfigData.colFour.list.map((item, index) => (
+                        <NextLink
+                          className="text-primary caption hover-underline"
+                          href={item.link.href}
+                          key={`${index}sa${item}`}
+                        >
+                          {item.link.text}
+                        </NextLink>
+                      ))}
+                    </div>
+                  )}
+              </div>
+            </div>
+          )}
+          <hr className="bg-gray-800" style={{ height: "1px" }} />
+          <div className="d-flex align-items-center pt-3 pb-5 gap-2 flex-column flex-sm-row justify-content-between align-items-center">
+            <img src="/static/Logo.svg" style={{ maxWidth: "200px" }}></img>
+            <p className="caption text-center">
+              © AssetMantle {new Date().getFullYear()} - All rights reserved{" "}
+            </p>
+          </div>
+        </div>
+      </footer>
+      <div
+        ref={backToTopRef}
+        className="back-to-top text-white position-fixed bottom-0 end-0 pb-3 pe-3"
+        style={{ opacity: "0" }}
+      >
+        <div
+          className="d-flex align-items-center justify-content-center rounded-circle bg-gray-800 px-3 py-2  bg-yellow-100-hover"
+          style={{ aspectRatio: "1/1", fontWeight: "900" }}
         >
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
+          <i className="bi bi-chevron-up"></i>
+        </div>
+      </div>
     </>
   );
 }
