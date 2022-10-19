@@ -24,83 +24,56 @@ export default function BasicMenu({ title, titleEndIcon, urls }) {
   };
 
   return (
-    <>
-      <Button
+    <div className="nav-item dropdown body2">
+      <a
+        class="nav-link dropdown-toggle d-flex gap-1 justify-content-xs-start justify-content-md-center after-none text-primary"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
         id={`basic-button-${title}`}
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        endIcon={titleEndIcon && titleEndIcon}
-        sx={{ justifyContent: { xs: "start", md: "center" } }}
       >
-        {title}
-      </Button>
+        {title} <i className={`bi ${titleEndIcon && titleEndIcon}`}></i>
+      </a>
       {urls && Array.isArray(urls) && urls.length > 0 && (
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-          sx={{
-            ".css-6hp17o-MuiList-root-MuiMenu-list": { padding: 0 },
-          }}
+        <ul
+          className="dropdown-menu bg-translucent"
+          style={{ width: "max-content" }}
         >
-          <Paper variant="translucent">
-            {urls.map((data, index) =>
-              !data.titleExist ? (
-                <Stack
-                  key={data.menuName && data.menuName + index}
-                  direction="row"
-                  spacing={1}
-                  sx={{
-                    borderBottom: "1px solid",
-                    borderColor: "grey.700",
-                    py: 2,
-                    px: 2,
-                    "&:last-child": {
-                      borderColor: "transparent",
-                    },
-                  }}
-                >
-                  {data.menuIcon && data.menuIcon}
-                  <Stack>
-                    <Typography variant="body2">
-                      {data.menuName && data.menuName}
-                    </Typography>
-                    <Typography variant="caption" sx={{ pb: 2 }}>
-                      {data.menuDescription && data.menuDescription}
-                    </Typography>
-                    <Stack direction="row" flexWrap="wrap" sx={{ gap: 1 }}>
-                      {data.url &&
-                        Array.isArray(data.url) &&
-                        data.url.length > 0 &&
-                        data.url.map((url, index) => (
-                          <MenuItem
-                            key={url.menuName && url.menuName + index}
-                            component="a"
-                            href={url.url && url.url}
-                            target={url.isExternalURL ? "_blank" : "_self"}
-                            rel={url.isExternalURL ? "noopener noreferrer" : ""}
-                            onClick={handleClose}
-                            sx={{
-                              p: 0,
-                              ":hover": {
-                                backgroundColor: "transparent",
-                              },
-                            }}
-                          >
-                            <Chip label={url.menuName} />
-                          </MenuItem>
-                        ))}
-                    </Stack>
-                  </Stack>
-                </Stack>
-              ) : (
-                <Accordion
+          {urls.map((data, index) =>
+            !data.titleExist ? (
+              <div
+                key={data.menuName && data.menuName + index}
+                className="d-flex flex-row gap-2 border-bottom-1 border-white p-2"
+              >
+                <span className="body2">{data.menuIcon && data.menuIcon}</span>
+                <div className="d-flex flex-column">
+                  <h4 className="body2">{data.menuName && data.menuName}</h4>
+                  <p className="caption pd-2">
+                    {data.menuDescription && data.menuDescription}
+                  </p>
+                  <div className="d-flex flex-wrap gap-2">
+                    {data.url &&
+                      Array.isArray(data.url) &&
+                      data.url.length > 0 &&
+                      data.url.map((url, index) => (
+                        <a
+                          key={url.menuName && url.menuName + index}
+                          className="bg-translucent border-1 border-white rounded-4 px-3 pt-1 text-white"
+                          style={{ textDecoration: "none" }}
+                          href={url.url && url.url}
+                          target={url.isExternalURL ? "_blank" : "_self"}
+                          rel={url.isExternalURL ? "noopener noreferrer" : ""}
+                        >
+                          {url.menuName}
+                        </a>
+                      ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                {/* <Accordion
                   variant="transparent"
                   defaultExpanded={!data.isNestMenuCollapsed}
                   key={data.menuName && data.menuName + index}
@@ -178,12 +151,72 @@ export default function BasicMenu({ title, titleEndIcon, urls }) {
                         ))}
                     </Stack>
                   </AccordionDetails>
-                </Accordion>
-              )
-            )}
-          </Paper>
-        </Menu>
+                </Accordion> */}
+                <details open>
+                  <summary className="d-flex justify-content-between text-white">
+                    <div className="d-flex">
+                      <span
+                        className="body2"
+                        style={{
+                          marginRight: "16px",
+                        }}
+                      >
+                        {data.menuIcon && data.menuIcon}
+                      </span>
+                      <p className="body2">
+                        {data.menuName && data.menuName}
+                        <br />
+                        <p className="caption pb-2">
+                          {data.menuDescription && data.menuDescription}
+                        </p>
+                      </p>
+                    </div>{" "}
+                    <i className="bi bi-chevron-down"></i>
+                  </summary>
+                  <div className="d-flex flex-column flex-wrap">
+                    {data.url &&
+                      Array.isArray(data.url) &&
+                      data.url.length > 0 &&
+                      data.url.map((urls, index) => (
+                        <div
+                          className="d-flex flex-column border-bottom-1 border-white py-2"
+                          key={urls.menuName && urls.menuName + index}
+                        >
+                          <p className="body2 px-2 pb-1">
+                            {urls.menuName && urls.menuName}
+                          </p>
+                          <div className="d-flex flex-row flex-wrap p-1 gap-1">
+                            {urls.url &&
+                              Array.isArray(urls.url) &&
+                              urls.url.length > 0 &&
+                              urls.url.map((url, index) => (
+                                <a
+                                  key={url.menuName && url.menuName + index}
+                                  className="bg-translucent border-1 border-white rounded-4 px-3 pt-1 text-white"
+                                  style={{ textDecoration: "none" }}
+                                  href={url.url && url.url}
+                                  target={
+                                    url.isExternalURL ? "_blank" : "_self"
+                                  }
+                                  rel={
+                                    url.isExternalURL
+                                      ? "noopener noreferrer"
+                                      : ""
+                                  }
+                                >
+                                  {url.menuName}
+                                </a>
+                              ))}
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </details>
+              </>
+            )
+          )}
+        </ul>
       )}
-    </>
+    </div>
   );
 }
