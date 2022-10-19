@@ -1,24 +1,5 @@
-import {
-  AppBar,
-  Box,
-  Container,
-  Drawer,
-  Icon,
-  IconButton,
-  Toolbar,
-  useScrollTrigger,
-} from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MenuIcon from "@mui/icons-material/Menu";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BasicMenu from "../components/BasicMenu";
-
-import WarehouseIcon from "@mui/icons-material/Warehouse";
-import SendTimeExtensionIcon from "@mui/icons-material/SendTimeExtension";
-import TokenIcon from "@mui/icons-material/Token";
-import TimelineIcon from "@mui/icons-material/Timeline";
-import ArticleIcon from "@mui/icons-material/Article";
-import CodeIcon from "@mui/icons-material/Code";
 
 // contents of menu and/or drawer
 const itemList = [
@@ -26,12 +7,12 @@ const itemList = [
     menuName: "Products",
     isExternalURL: false,
     isNestMenuCollapsed: false,
-    endIcon: "expand_more",
+    endIcon: "bi-chevron-down",
     ratioWidthExist: true,
     url: [
       {
         menuName: "In-House",
-        menuIcon: <WarehouseIcon />,
+        menuIcon: <i className="bi bi-house-fill"></i>,
         menuDescription: "",
         isExternalURL: false,
         isNestMenuCollapsed: false,
@@ -64,7 +45,7 @@ const itemList = [
       },
       {
         menuName: "External",
-        menuIcon: <SendTimeExtensionIcon />,
+        menuIcon: <i className="bi bi-box-arrow-up-right"></i>,
         menuDescription: "",
         isExternalURL: false,
         isNestMenuCollapsed: false,
@@ -140,11 +121,11 @@ const itemList = [
     menuName: "$MNTL",
     isExternalURL: false,
     isNestMenuCollapsed: false,
-    endIcon: "expand_more",
+    endIcon: "bi-chevron-down",
     url: [
       {
         menuName: "Token",
-        menuIcon: <TokenIcon />,
+        menuIcon: <i className="bi bi-box"></i>,
         menuDescription: "",
         isExternalURL: true,
         isNestMenuCollapsed: true,
@@ -165,7 +146,7 @@ const itemList = [
       },
       {
         menuName: "Tracking",
-        menuIcon: <TimelineIcon />,
+        menuIcon: <i className="bi bi-speedometer2"></i>,
         menuDescription: "",
         isExternalURL: true,
         isNestMenuCollapsed: true,
@@ -190,11 +171,11 @@ const itemList = [
     menuName: "Resources",
     isExternalURL: false,
     isNestMenuCollapsed: true,
-    endIcon: "expand_more",
+    endIcon: "bi-chevron-down",
     url: [
       {
         menuName: "Docs",
-        menuIcon: <ArticleIcon />,
+        menuIcon: <i className="bi bi-file-earmark-text"></i>,
         menuDescription: "",
         isExternalURL: true,
         isNestMenuCollapsed: false,
@@ -221,7 +202,7 @@ const itemList = [
       },
       {
         menuName: "Developer Resources",
-        menuIcon: <CodeIcon />,
+        menuIcon: <i className="bi bi-code-slash"></i>,
         menuDescription: "",
         isExternalURL: true,
         isNestMenuCollapsed: false,
@@ -257,123 +238,47 @@ const itemList = [
 ];
 
 export default function Header(props) {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const headerRef = useRef();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  function ElevationScroll(props) {
-    const { children } = props;
-    // implement scroll trigger. Enable hystersis so that we can identify up-scroll from down-scroll
-    const trigger = useScrollTrigger({
-      disableHysteresis: true,
-      threshold: 0,
-    });
-
-    let appBarJSX = React.cloneElement(children, {
-      elevation: trigger ? 2 : 0,
-      style: { backgroundColor: trigger ? "rgba(0,0,0,0.75)" : "transparent" },
-    });
-
-    return appBarJSX;
-  }
-
-  const setDrawer = (isDrawerOpen) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setDrawerOpen(isDrawerOpen);
-  };
-
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
-  const container =
-    props.window !== undefined ? () => props.window().document.body : undefined;
-
+  useEffect(() => {
+    const scroll = (e) => {
+      if (window.scrollY > 50)
+        headerRef.current.style.backgroundColor = "rgba(0,0,0,0.8)";
+      else if (window.scrollY < 50)
+        headerRef.current.style.backgroundColor = "";
+    };
+    window.addEventListener("scroll", scroll);
+    return () => window.removeEventListener("scroll", scroll);
+  }, []);
   return (
     <>
-      <ElevationScroll>
-        <AppBar>
-          <Container disableGutters maxWidth="lg">
-            <Toolbar
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                // justifyContent: { xs: "flex-start", sm: "space-between" },
-              }}
+      <header
+        className="position-fixed container-fluid top-0 start-0"
+        ref={headerRef}
+        style={{ zIndex: 1200 }}
+      >
+        <nav className="container-lg py-3 mx-auto">
+          <div className="d-flex align-items-center">
+            <div className="d-flex flex-grow-1">
+              <img
+                src="/static/Logo.svg"
+                alt="logo"
+                onClick={() => window.open("/", "_self")}
+                style={{ cursor: "pointer", maxWidth: "200px" }}
+              />
+            </div>
+            <button
+              className="navbar-toggler d-flex d-sm-none bg-yellow-100"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
             >
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={toggleDrawer}
-                sx={{
-                  edge: "start",
-                  mr: 1,
-                  display: { xs: "box", sm: "none" },
-                }}
-              >
-                <MenuIcon color="primary" />
-              </IconButton>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexGrow: 1,
-                }}
-              >
-                <img
-                  src="/static/Logo.svg"
-                  alt="logo"
-                  onClick={() => window.open("/", "_self")}
-                  style={{ cursor: "pointer", maxWidth: "200px" }}
-                />
-              </Box>
-              <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-                {itemList &&
-                  Array.isArray(itemList) &&
-                  itemList.length > 0 &&
-                  itemList.map((data, index) => (
-                    <BasicMenu
-                      key={index}
-                      title={data.menuName}
-                      urls={data.url}
-                      titleEndIcon={<Icon>{data.endIcon}</Icon>}
-                      ratioWidthExist={data.ratioWidthExist}
-                    />
-                  ))}
-              </Box>
-            </Toolbar>
-          </Container>
-          <Box component="nav">
-            <Drawer
-              container={container}
-              variant="temporary"
-              open={drawerOpen}
-              onClose={toggleDrawer}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-              sx={{
-                display: { xs: "block", sm: "none" },
-                "& .MuiDrawer-paper": {
-                  boxSizing: "border-box",
-                  width: "min(260px ,100%)",
-                  p: 4,
-                },
-              }}
-            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="d-none d-sm-flex gap-3">
               {itemList &&
                 Array.isArray(itemList) &&
                 itemList.length > 0 &&
@@ -382,15 +287,14 @@ export default function Header(props) {
                     key={index}
                     title={data.menuName}
                     urls={data.url}
-                    titleEndIcon={<Icon>{data.endIcon}</Icon>}
+                    titleEndIcon={data.endIcon}
                     ratioWidthExist={data.ratioWidthExist}
                   />
                 ))}
-            </Drawer>
-          </Box>
-        </AppBar>
-      </ElevationScroll>
-      <Toolbar id="back-to-top-anchor" />
+            </div>
+          </div>
+        </nav>
+      </header>
     </>
   );
 }
