@@ -249,6 +249,12 @@ a:hover {
     text-decoration: none;
   }
 }
+.hover-underline {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
 
 // specific styles
 .after-none {
