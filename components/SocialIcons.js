@@ -4,9 +4,9 @@ import { FiGithub, FiTwitter } from "react-icons/fi";
 import { TbBrandTelegram, TbBrandDiscord } from "react-icons/tb";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-const SocialIcons = ({ spacing = 4 }) => (
+const SocialIcons = ({ spacing = 4, additionalClass = "" }) => (
   <div
-    className={`d-flex justify-content-center align-items-start gap-${spacing} text-white body1`}
+    className={`d-flex justify-content-center align-items-start gap-${spacing} text-white body1 ${additionalClass}`}
   >
     <a
       className="text-white"
