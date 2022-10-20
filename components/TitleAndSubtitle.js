@@ -39,7 +39,7 @@ const TitleAndSubtitle = (props) => {
             textAlign === "start" ||
             textAlign === "justify")
             ? textAlign
-            : "",
+            : "left",
       }}
       id={
         title &&

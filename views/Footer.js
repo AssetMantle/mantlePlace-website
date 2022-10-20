@@ -201,19 +201,21 @@ export default function Footer(props) {
                   Array.isArray(FooterConfigData.colOne.list) &&
                   FooterConfigData.colOne.list.length > 0 && (
                     <div className="d-flex flex-column pt-3 gap-3 text-center text-md-start">
-                      {FooterConfigData.colOne.list.map((item, index) => (
-                        <div className="d-flex flex-column gap-1 bg-t align-items-center align-items-md-start">
-                          <p className="caption">{item.title}</p>
-                          <NextLink
-                            color="primary.main"
-                            underline="hover"
-                            variant="caption"
-                            href={`mailto:${item.text}`}
-                          >
-                            {item.text}
-                          </NextLink>
-                        </div>
-                      ))}
+                      {React.Children.toArray(
+                        FooterConfigData.colOne.list.map((item, index) => (
+                          <div className="d-flex flex-column gap-1 bg-t align-items-center align-items-md-start">
+                            <p className="caption">{item.title}</p>
+                            <NextLink
+                              color="primary.main"
+                              underline="hover"
+                              variant="caption"
+                              href={`mailto:${item.text}`}
+                            >
+                              {item.text}
+                            </NextLink>
+                          </div>
+                        ))
+                      )}
                       <SocialIcons
                         additionalClass="justify-content-center justify-content-md-start body1"
                         spacing={3}
@@ -230,15 +232,17 @@ export default function Footer(props) {
                   Array.isArray(FooterConfigData.colTwo.list) &&
                   FooterConfigData.colTwo.list.length > 0 && (
                     <div className="d-flex flex-column pt-3 gap-3">
-                      {FooterConfigData.colTwo.list.map((item, index) => (
-                        <NextLink
-                          className="text-primary caption hover-underline"
-                          href={item.link.href}
-                          key={`${index}sa${item}`}
-                        >
-                          {item.link.text}
-                        </NextLink>
-                      ))}
+                      {React.Children.toArray(
+                        FooterConfigData.colTwo.list.map((item, index) => (
+                          <NextLink
+                            className="text-primary caption hover-underline"
+                            href={item.link.href}
+                            key={`${index}sa${item}`}
+                          >
+                            {item.link.text}
+                          </NextLink>
+                        ))
+                      )}
                     </div>
                   )}
               </div>
@@ -250,15 +254,17 @@ export default function Footer(props) {
                   Array.isArray(FooterConfigData.colThree.list) &&
                   FooterConfigData.colThree.list.length > 0 && (
                     <div className="d-flex flex-column pt-3 gap-3">
-                      {FooterConfigData.colThree.list.map((item, index) => (
-                        <NextLink
-                          className="text-primary caption hover-underline"
-                          href={item.link.href}
-                          key={`${index}sa${item}`}
-                        >
-                          {item.link.text}
-                        </NextLink>
-                      ))}
+                      {React.Children.toArray(
+                        FooterConfigData.colThree.list.map((item, index) => (
+                          <NextLink
+                            className="text-primary caption hover-underline"
+                            href={item.link.href}
+                            key={`${index}sa${item}`}
+                          >
+                            {item.link.text}
+                          </NextLink>
+                        ))
+                      )}
                     </div>
                   )}
               </div>
@@ -270,15 +276,17 @@ export default function Footer(props) {
                   Array.isArray(FooterConfigData.colFour.list) &&
                   FooterConfigData.colFour.list.length > 0 && (
                     <div className="d-flex flex-column pt-3 gap-3">
-                      {FooterConfigData.colFour.list.map((item, index) => (
-                        <NextLink
-                          className="text-primary caption hover-underline"
-                          href={item.link.href}
-                          key={`${index}sa${item}`}
-                        >
-                          {item.link.text}
-                        </NextLink>
-                      ))}
+                      {React.Children.toArray(
+                        FooterConfigData.colFour.list.map((item, index) => (
+                          <NextLink
+                            className="text-primary caption hover-underline"
+                            href={item.link.href}
+                            key={`${index}sa${item}`}
+                          >
+                            {item.link.text}
+                          </NextLink>
+                        ))
+                      )}
                     </div>
                   )}
               </div>
