@@ -1,25 +1,6 @@
 import * as React from "react";
-// import MenuItem from "@mui/material/MenuItem";
-// import {
-//   Accordion,
-//   AccordionDetails,
-//   AccordionSummary,
-//   Chip,
-//   Stack,
-//   Typography,
-// } from "@mui/material";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function BasicMenu({ title, titleEndIcon, urls }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <div className="nav-item dropdown body2">
       <a
@@ -79,96 +60,6 @@ export default function BasicMenu({ title, titleEndIcon, urls }) {
                 </div>
               ) : (
                 <>
-                  {/* <Accordion
-                    variant="transparent"
-                    defaultExpanded={!data.isNestMenuCollapsed}
-                    key={data.menuName && data.menuName + index}
-                  >
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{}}>
-                      <span
-                        style={{
-                          marginRight: "16px",
-                        }}
-                      >
-                        {data.menuIcon && data.menuIcon}
-                      </span>
-                      <Typography variant="body2">
-                        {data.menuName && data.menuName}
-                        <br />
-                        <Typography variant="caption" sx={{ pb: 2 }}>
-                          {data.menuDescription && data.menuDescription}
-                        </Typography>
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Stack direction="column" flexWrap="wrap">
-                        {data.url &&
-                          Array.isArray(data.url) &&
-                          data.url.length > 0 &&
-                          React.Children.toArray(
-                            data.url.map((urls, index) => (
-                              <Stack
-                                key={urls.menuName && urls.menuName + index}
-                                sx={{
-                                  borderBottom: "1px solid",
-                                  borderColor: "grey.700",
-                                  py: 2,
-                                }}
-                              >
-                                <Typography
-                                  variant="body2"
-                                  sx={{ px: 2, pb: 1 }}
-                                >
-                                  {urls.menuName && urls.menuName}
-                                </Typography>
-                                <Stack
-                                  direction="row"
-                                  flexWrap="wrap"
-                                  sx={{
-                                    p: 1,
-                                    gap: 1,
-                                  }}
-                                >
-                                  {urls.url &&
-                                    Array.isArray(urls.url) &&
-                                    urls.url.length > 0 &&
-                                    React.Children.toArray(
-                                      urls.url.map((url, index) => (
-                                        <MenuItem
-                                          key={
-                                            url.menuName && url.menuName + index
-                                          }
-                                          component="a"
-                                          href={url.url && url.url}
-                                          target={
-                                            url.isExternalURL
-                                              ? "_blank"
-                                              : "_self"
-                                          }
-                                          rel={
-                                            url.isExternalURL
-                                              ? "noopener noreferrer"
-                                              : ""
-                                          }
-                                          onClick={handleClose}
-                                          sx={{
-                                            p: 0,
-                                            ":hover": {
-                                              backgroundColor: "transparent",
-                                            },
-                                          }}
-                                        >
-                                          <Chip label={url.menuName} />
-                                        </MenuItem>
-                                      ))
-                                    )}
-                                </Stack>
-                              </Stack>
-                            ))
-                          )}
-                      </Stack>
-                    </AccordionDetails>
-                  </Accordion> */}
                   <div className="px-3 pt-2">
                     <div className="d-flex">
                       <span
