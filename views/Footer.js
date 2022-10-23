@@ -1,25 +1,5 @@
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Fab,
-  Fade,
-  Grid,
-  Link,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import { FiLinkedin, FiGithub, FiTwitter } from "react-icons/fi";
-import { TbBrandTelegram, TbBrandDiscord } from "react-icons/tb";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import NorthEastIcon from "@mui/icons-material/NorthEast";
 import SocialIcons from "../components/SocialIcons";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PropTypes from "prop-types";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
 import NextLink from "../components/NextLink";
 
 const FooterConfigData = {
@@ -168,7 +148,6 @@ const FooterConfigData = {
       {
         title: "Access our Resources",
         link: {
-          icon: <NorthEastIcon />,
           text: "MediaKit",
           href: "https://docs.assetmantle.one/MediaKit",
         },
@@ -206,9 +185,7 @@ export default function Footer(props) {
                           <div className="d-flex flex-column gap-1 bg-t align-items-center align-items-md-start">
                             <p className="caption">{item.title}</p>
                             <NextLink
-                              color="primary.main"
-                              underline="hover"
-                              variant="caption"
+                              className="text-primary caption hover-underline"
                               href={`mailto:${item.text}`}
                             >
                               {item.text}
@@ -305,6 +282,7 @@ export default function Footer(props) {
         ref={backToTopRef}
         className="back-to-top text-white position-fixed bottom-0 end-0 pb-3 pe-3"
         style={{ opacity: "0" }}
+        onClick={() => window.scrollTo(0, 0)}
       >
         <div
           className="d-flex align-items-center justify-content-center rounded-circle bg-gray-800 px-3 py-2  bg-yellow-100-hover"

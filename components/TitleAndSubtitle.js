@@ -11,7 +11,7 @@ const TitleAndSubtitle = (props) => {
   const SectionConfigData = {
     title,
     titleVariant: isContent ? "h2" : "h1",
-    titleColor: "secondary.light",
+    titleColor: "text-white",
     subTitle,
     subTitleVariant: "subtitle2",
     subTitleColor: "secondary.light",
@@ -56,7 +56,10 @@ const TitleAndSubtitle = (props) => {
         >
           <NextLink
             color="inherit"
-            underline="hover"
+            className={`${
+              SectionConfigData.titleColor || "text-white"
+            } no-underline`}
+            style={{ color: SectionConfigData.titleColor || "inherit" }}
             href={`#${
               SectionConfigData.title &&
               SectionConfigData.title

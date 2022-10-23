@@ -240,6 +240,14 @@ const itemList = [
 export default function Header(props) {
   const headerRef = useRef();
 
+  const [ham, setHam] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("resize", function () {
+      setHam(false);
+    });
+  }, []);
+
   useEffect(() => {
     const scroll = (e) => {
       if (window.scrollY > 50)
@@ -259,7 +267,24 @@ export default function Header(props) {
       >
         <nav className="container-lg py-3 mx-auto">
           <div className="d-flex align-items-center">
-            <div className="d-flex flex-grow-1">
+            <div className="d-flex flex-grow-1 align-items-center">
+              <button
+                className="navbar-toggler d-flex d-sm-none pe-2"
+                type="button"
+                style={{ zIndex: "1080" }}
+                onClick={() => setHam(!ham)}
+              >
+                <span
+                  className="navbar-toggler-icon text-white"
+                  style={{ fontSize: "1.7rem", width: "auto", height: "auto" }}
+                >
+                  {ham ? (
+                    <i className="bi bi-x"></i>
+                  ) : (
+                    <i className="bi bi-list"></i>
+                  )}
+                </span>
+              </button>
               <img
                 src="/static/Logo.svg"
                 alt="logo"
@@ -267,18 +292,13 @@ export default function Header(props) {
                 style={{ cursor: "pointer", maxWidth: "200px" }}
               />
             </div>
-            <button
-              className="navbar-toggler d-flex d-sm-none bg-yellow-100"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+            <div
+              className={`d-none d-sm-flex gap-3 ${
+                ham
+                  ? "open-nav-mobile d-flex flex-column position-fixed top-0 start-0 py-6 px-5 bg-nav h-100 w-100"
+                  : ""
+              }`}
             >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="d-none d-sm-flex gap-3">
               {itemList &&
                 Array.isArray(itemList) &&
                 itemList.length > 0 &&

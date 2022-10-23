@@ -191,6 +191,9 @@ a:hover {
 
 // customs as needed
 // globally
+.bg-nav {
+  background-color: $nav-bg;
+}
 .bg-theme-white {
   background-color: $primary-light !important;
 }
@@ -257,6 +260,24 @@ a:hover {
 }
 
 // specific styles
+.open-nav-mobile {
+  @media (min-width: 576px) {
+    position: relative !important;
+  }
+  @media (max-width: 576px) {
+    display: flex !important;
+    overflow-y: auto;
+    & .dropdown-menu {
+      position: relative !important;
+      width: 100% !important;
+      display: inline-block;
+    }
+    & > *:last-child {
+      padding-bottom: 50px;
+    }
+  }
+}
+
 .after-none {
   &::after {
     display: none;

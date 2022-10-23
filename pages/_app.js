@@ -1,10 +1,7 @@
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
 import Head from "next/head";
 import PropTypes from "prop-types";
 import * as React from "react";
 import Layout from "../components/layout";
-import theme from "../config/theme";
 
 // bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,12 +23,9 @@ export default function MyApp(props) {
         />
         <title>AssetMantle</title>
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }
